@@ -613,8 +613,8 @@ body_cb(http_parser *p, const char *buf, size_t len)
     if(req->body_type == BODY_TYPE_NONE){
         if(req->body_length == 0){
             //Length Required
-            req->bad_request_code = 411;
-            return -1;
+            //req->bad_request_code = 411;
+            //return -1;
         }
         if(req->body_length > client_body_buffer_size){
             //large size request
