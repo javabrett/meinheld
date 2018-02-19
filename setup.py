@@ -13,7 +13,7 @@ import fnmatch
 develop = False
 if os.environ.get("MEINHELD_DEVELOP") == "1":
     develop = True
-# develop = True
+develop = True
 
 nogreen = False
 if os.environ.get("MEINHELD_NOGREEN") == "1":
