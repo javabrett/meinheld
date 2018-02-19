@@ -68,12 +68,12 @@ if pypy:
 
 if nogreen:
     define_macros=[
-            ("HTTP_PARSER_DEBUG", "0") ]
+            ("HTTP_PARSER_DEBUG", "1") ]
     install_requires=[]
 else:
     define_macros=[
             ("WITH_GREENLET",None),
-            ("HTTP_PARSER_DEBUG", "0") ]
+            ("HTTP_PARSER_DEBUG", "1") ]
     install_requires=['greenlet>=0.4.5,<0.5']
 
 if develop:
