@@ -168,11 +168,14 @@ def test_post():
     assert(res.content == ASSERT_RESPONSE)
     assert(env.get("wsgi.input").read() == b"key1=value1&key2=value2")
 
+def gen():
+    #return OrderedDict([('key1', 'value1'), ('key2', 'value2')])
+    yield b"key1=value1&key2=value2"
+
 def test_post_chunked():
 
     def client():
-        payload = OrderedDict([('key1', 'value1'), ('key2', 'value2')])
-        return requests.post("http://localhost:8000/", data=payload)
+        return requests.post("http://localhost:8000/", data=gen())
 
     env, res = run_client(client, App)
     assert(res.status_code == 200)
