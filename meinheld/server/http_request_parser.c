@@ -612,7 +612,9 @@ body_cb(http_parser *p, const char *buf, size_t len)
     }
     if(req->body_type == BODY_TYPE_NONE){
         if(req->body_length == 0){
+            DEBUG("Length 0, flags: %d", p->flags);
             //Length Required
+            DEBUG("set request code %d", 411);
             req->bad_request_code = 411;
             return -1;
         }
