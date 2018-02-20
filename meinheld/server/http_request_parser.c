@@ -1,4 +1,5 @@
 #include "http_request_parser.h"
+#include "http_parser.h"
 #include "server.h"
 #include "response.h"
 #include "input.h"
@@ -611,7 +612,7 @@ body_cb(http_parser *p, const char *buf, size_t len)
         return -1;
     }
     if(req->body_type == BODY_TYPE_NONE){
-        if(req->body_length == 0){
+        if(req->body_length == 0 && !(p->flags & F_CHUNKED)){
             DEBUG("Length 0, flags: %d", p->flags);
             //Length Required
             DEBUG("set request code %d", 411);
